@@ -479,7 +479,7 @@ int tokFile::getNextInt(int *ret) {
 }
 
 
-main(int argc, const char *argv[])
+int main(int argc, const char *argv[])
 {
     //////////////////////////////////////////////////////////////////////
     // TODO: Argument parsing should be replaced by something like

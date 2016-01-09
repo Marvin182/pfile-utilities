@@ -268,7 +268,7 @@ parse_float(const char*const s)
 
 #define MAX_IP_NAMES 1024
 
-main(int argc, const char *argv[])
+int main(int argc, const char *argv[])
 {
     char errmsg[1024];
 

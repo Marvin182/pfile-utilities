@@ -1046,7 +1046,7 @@ CLE_ENTRY clargs [] = {
     { NULL, CLE_T_END, NULL, NULL, NULL, NULL, NULL }
 };
 
-main(int argc, char **argv) {
+int main(int argc, char **argv) {
     char *programName;
     int err = 0;
 

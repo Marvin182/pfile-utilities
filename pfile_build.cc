@@ -309,7 +309,7 @@ pfile_build(SentIdStream_File& sent_id_stream,
     }
 }
 
-main(int argc, const char *argv[])
+int main(int argc, const char *argv[])
 {
     const char *sent_ids_fname = 0;   // Sentence ids filename.
     const char *label_vals_fname = 0;   // Label values filename.

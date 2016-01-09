@@ -405,7 +405,7 @@ plabels(LabelValsStream& label_vals_stream_p,
     }
 }
 
-main(int argc, const char *argv[])
+int main(int argc, const char *argv[])
 {
     const char *ipfile_fname = 0;   // pfile name
     const char *opfile_fname = 0;   // pfile name

@@ -146,7 +146,7 @@ insert_iname(size_t &inames_num,
 }
 
 
-main(int argc, const char *argv[])
+int main(int argc, const char *argv[])
 {
     //////////////////////////////////////////////////////////////////////
     // TODO: Argument parsing should be replaced by something like

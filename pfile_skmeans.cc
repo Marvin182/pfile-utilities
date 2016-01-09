@@ -1230,7 +1230,7 @@ parse_float(const char*const s)
 }
 
 
-main(int argc, const char *argv[])
+int main(int argc, const char *argv[])
 {
 
     const char *input_fname = 0;   // Input pfile name.

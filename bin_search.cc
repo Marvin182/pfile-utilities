@@ -55,7 +55,7 @@ bin_search(float *array,  // the sorted array to search
 
 #ifdef MAIN
 
-main(int argc, char*argv[])
+int main(int argc, char*argv[])
 {
 
   int i,j;

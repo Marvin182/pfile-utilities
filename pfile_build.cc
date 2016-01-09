@@ -21,7 +21,6 @@
 #include <stdarg.h>
 #include <errno.h>
 #include <string.h>
-#include <float.h>
 #include "QN_PFile.h"
 #include "error.h"
 

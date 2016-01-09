@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <limits.h>
+#include <limits>
 #include <math.h>
 #ifdef HAVE_SYS_IEEEFP_H
 #  include <sys/ieeefp.h>

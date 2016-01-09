@@ -17,9 +17,8 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <limits.h>
+#include <limits>
 #include <math.h>
-#include <float.h>
 #include <assert.h>
 
 #include "rand.h"
@@ -169,13 +168,13 @@ double
 MixBiNormal::varianceFloor = 0.0;
 
 double
-MixBiNormal::detFloor = DBL_MIN;
+MixBiNormal::detFloor = std::numeric_limits<double>::min();
 
 // The implicit assumption here is that there
 // will never be more than 1000 mixture components
-// to keep any coef > DBL_MIN.
+// to keep any coef > std::numeric_limits<double>::min().
 double
-MixBiNormal::mixtureCoeffVanishNumerator = 1000.0*DBL_MIN;
+MixBiNormal::mixtureCoeffVanishNumerator = 1000.0*std::numeric_limits<double>::min();
 
 double*
 MixBiNormal::scratch1 = 0;
@@ -371,7 +370,7 @@ MixBiNormal::setScratchSize(const int n,
 double
 MixBiNormal::llPercDiff()
 {
-  if (fabs(prev_llikelihood) < DBL_MIN)
+  if (fabs(prev_llikelihood) < std::numeric_limits<double>::min())
     error("Can't compute llPercDiff, prev_llikelihood = %e\n",prev_llikelihood);
   return 100.0*( (llikelihood - prev_llikelihood)/fabs(llikelihood));
 }
@@ -1010,7 +1009,7 @@ start:
       goto start;
     }
     const double det = (s0*s2-s1*s1);
-    if (det <= detFloor || det <= DBL_MIN) {
+    if (det <= detFloor || det <= std::numeric_limits<double>::min()) {
       if (NumMixComps > 1) {
 	// If there's only 1 comp. left,
 	// this might be a dataset with
@@ -1029,7 +1028,7 @@ start:
     const double inv_det = 1.0/det;
     if (!finite(inv_det)) {
       // In theory, we don't need this check if we also
-      // do the DBL_MIN check above. We keep this here
+      // do the std::numeric_limits<double>::min() check above. We keep this here
       // just in case.
       if (reRandomizeOnlyOneComp) {
 	randomizeCurMixture(l);
@@ -1042,7 +1041,7 @@ start:
       goto start;
     }
     // check if cur_alphs[l] <= mixtureCoeffVanishNumerator/NumMixComps
-    if (NumMixComps*cur_alphas[l] <= mixtureCoeffVanishNumerator || cur_alphas[l] <= DBL_MIN) {
+    if (NumMixComps*cur_alphas[l] <= mixtureCoeffVanishNumerator || cur_alphas[l] <= std::numeric_limits<double>::min()) {
       if (reRandomizeOnlyOneComp) {
 	randomizeCurMixture(l);
 	normalizeAlphasWithNoise();
@@ -1094,8 +1093,8 @@ MixBiNormal::addtoEpoch(double x0,double x1)
     next_covars[0].s[2] += d1*d1;
     
     double ll = pg(x0,x1,0);
-    if (ll < DBL_MIN)
-      ll = DBL_MIN;
+    if (ll < std::numeric_limits<double>::min())
+      ll = std::numeric_limits<double>::min();
     llikelihood += log(ll);
   } else {
     // compute likelihoods
@@ -1106,8 +1105,8 @@ MixBiNormal::addtoEpoch(double x0,double x1)
       likelihoods[l] = tmp;
       sum_like += tmp;
     }
-    if (sum_like < DBL_MIN) {
-      llikelihood += log(DBL_MIN);
+    if (sum_like < std::numeric_limits<double>::min()) {
+      llikelihood += log(std::numeric_limits<double>::min());
       // Lacking any evidence to the contrary, we assume
       // uniform posteriors for a presumably outlier data point.
       const double post_l = 1.0/NumMixComps;
@@ -1183,8 +1182,8 @@ MixBiNormal::addtoEpoch(double *x0,double *x1,const int n)
     // make sure none of the likelihoods are zero
     accum_likelihoodsp = accum_likelihoods;
     do {
-      if (*accum_likelihoodsp < DBL_MIN)
-	*accum_likelihoodsp = DBL_MIN;
+      if (*accum_likelihoodsp < std::numeric_limits<double>::min())
+	*accum_likelihoodsp = std::numeric_limits<double>::min();
       accum_likelihoodsp++;
     } while (accum_likelihoodsp != accum_likelihoods_endp);
 
@@ -1265,7 +1264,7 @@ MixBiNormal::addtoEpoch(double *x0,double *x1,const int n)
     likelihoodsp = likelihoods;
     double *scratch3p = scratch3;
     do {
-      if (*accum_likelihoodsp < DBL_MIN) {
+      if (*accum_likelihoodsp < std::numeric_limits<double>::min()) {
 	double *likelihoodspp = likelihoodsp;
 	l=1;
 	do {
@@ -1273,7 +1272,7 @@ MixBiNormal::addtoEpoch(double *x0,double *x1,const int n)
 	  likelihoodspp+=n;
 	} while (l++ < NumMixComps);
 	*accum_likelihoodsp = NumMixComps;
-	*scratch3p = DBL_MIN;
+	*scratch3p = std::numeric_limits<double>::min();
       } else
 	*scratch3p = *accum_likelihoodsp;
       accum_likelihoodsp++;
@@ -1401,7 +1400,7 @@ MixBiNormal::endEpoch()
     // or something worse.
     if (NumMixComps*next_alphas[l] <= mixtureCoeffVanishNumerator
 
-	|| next_alphas[l] <= DBL_MIN) {
+	|| next_alphas[l] <= std::numeric_limits<double>::min()) {
       // this component is getting very unlikely, we set things up
       // so that the next beginning of an iteration will surely do a 
       // rerandomization (see prepareCurrent()).

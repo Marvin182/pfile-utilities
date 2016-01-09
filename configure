@@ -2882,17 +2882,17 @@ _ACEOF
 cat confdefs.h >>conftest.$ac_ext
 cat >>conftest.$ac_ext <<_ACEOF
 /* end confdefs.h.  */
-/* Define sin to an innocuous variant, in case <limits.h> declares sin.
-   For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+/* Define sin to an innocuous variant, in case <limits> declares sin.
+   For example, HP-UX 11i <limits> declares gettimeofday.  */
 #define sin innocuous_sin
 
 /* System header to define __stub macros and hopefully few prototypes,
     which can conflict with char sin (); below.
-    Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
-    <limits.h> exists even on freestanding compilers.  */
+    Prefer <limits> to <assert.h> if __STDC__ is defined, since
+    <limits> exists even on freestanding compilers.  */
 
 #ifdef __STDC__
-# include <limits.h>
+# include <limits>
 #else
 # include <assert.h>
 #endif

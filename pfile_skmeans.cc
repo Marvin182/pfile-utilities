@@ -16,13 +16,13 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <limits.h>
+#include <limits>
 #include <math.h>
 #include <assert.h>
 
 #include <sys/types.h>
 #include <unistd.h>
-#include <wait.h>
+#include <sys/wait.h>
 
 #include "QN_PFile.h"
 #include "error.h"

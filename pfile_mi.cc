@@ -30,7 +30,7 @@ extern "C" void nonstandard_arithmetic();
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <limits.h>
+#include <limits>
 #include <math.h>
 #include <signal.h>
 #include <sys/types.h>
@@ -365,7 +365,7 @@ Cor_Col::computeMI(Range& cfr_rng)
 	  const double den = ((Exx_ExEx)*(Eyy-EyEy));
 	  // If the denimonator is too small, we assume this is
 	  // from a degenerate distribution for which I(X;Y) == 0.
-	  if (fabs(den) < DBL_MIN) {
+	  if (fabs(den) < std::numeric_limits<double>::min()) {
 	    *ftr_mi_p = 0.0;
 	  } else {
 	    const double sq_corcoef = (num*num)/den;
@@ -1934,12 +1934,12 @@ int main(int argc, const char *argv[])
     int num_active_to_stop = 0;
 
     bool compute_mi = true;
-    int max_em_iterations = MAXINT;
+    int max_em_iterations = std::numeric_limits<int>::max();
 
     double varianceFloor = 0.0;
     int re_rands = 5;
 
-    double detFloor = DBL_MIN;
+    double detFloor = std::numeric_limits<double>::min();
 
     int min_labels_per_sentence = 1;
 
@@ -2280,8 +2280,8 @@ int main(int argc, const char *argv[])
     if (detFloor < 0) {
       error("variance floor must be non-negative.");
     }
-    if (mcvr <= DBL_MIN) {
-      error("mcvr must be greater than %e.",DBL_MIN);
+    if (mcvr <= std::numeric_limits<double>::min()) {
+      error("mcvr must be greater than %e.",std::numeric_limits<double>::min());
     }
     if (mcvr < 1.0) {
       fprintf(stderr,"WARNING: mcvr is set to %f < 1.0.",mcvr);

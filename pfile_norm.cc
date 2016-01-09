@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <limits.h>
+#include <limits>
 #include <math.h>
 #include <assert.h>
 
@@ -202,7 +202,7 @@ pfile_norm(QN_InFtrLabStream& in_stream,
 	(*ftr_stds_p) = 
 	  (((*ftr_stds_p) - (*ftr_means_p)*(*ftr_means_p)/total_frames)/
 	   total_frames);
-	if (*ftr_stds_p < DBL_MIN) {
+	if (*ftr_stds_p < std::numeric_limits<double>::min()) {
 	  error("ERROR, computed variance is too small %e\n",*ftr_stds_p);
 	} else 
 	  *ftr_stds_p  = 1.0/sqrt(*ftr_stds_p);

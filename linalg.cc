@@ -8,9 +8,7 @@
 #include <cstdlib>
 #include <time.h>
 #include <error.h>
-#include <limits.h>
-
-#include <float.h>	// 2002-03-17 dpwe@ee.columbia.edu for DBL_MIN
+#include <limits>
 
 #include "icsiarray.h"
 #include "linalg.h"
@@ -284,7 +282,7 @@ linalg::getEigenVec(const icsiarray<double>& a, double& eigVal,
         
     int nrInitialIter = 0;        
     double len_y = 0.0;
-    double maxGF = DBL_MIN;	// min value for a double (from limits.h)
+    double maxGF = std::numeric_limits<double>::min();	// min value for a double (from limits.h)
     double lambdaI = eigVal;
     do {
 	nrInitialIter++;

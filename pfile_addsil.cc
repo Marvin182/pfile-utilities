@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <limits.h>
+#include <limits>
 #include <math.h>
 #include <assert.h>
 
@@ -198,7 +198,7 @@ pfile_addsil(QN_InFtrLabStream& in_stream,
 	  for (i=0;i<(int)frrng.length();i++) {
 	    sums[i] /= prbrng.length();
 	    sumsqs[i] = sumsqs[i] / prbrng.length() - sums[i]*sums[i];
-	    if (sumsqs[i] <= DBL_MIN)
+	    if (sumsqs[i] <= std::numeric_limits<double>::min())
 	      sumsqs[i] = 0.0;
 	    else 
 	      sumsqs[i] = sqrt(sumsqs[i]);
@@ -251,7 +251,7 @@ pfile_addsil(QN_InFtrLabStream& in_stream,
 	  for (i=0;i<(int)frrng.length();i++) {
 	    sums[i] /= prerng.length();
 	    sumsqs[i] = sumsqs[i] / prerng.length() - sums[i]*sums[i];
-	    if (sumsqs[i] <= DBL_MIN)
+	    if (sumsqs[i] <= std::numeric_limits<double>::min())
 	      sumsqs[i] = 0.0;
 	    else 
 	      sumsqs[i] = sqrt(sumsqs[i]);

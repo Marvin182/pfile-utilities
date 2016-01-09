@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <values.h>
+#include <limits.h>
 #include <math.h>
 #include <float.h>
 

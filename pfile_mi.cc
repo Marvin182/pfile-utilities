@@ -30,7 +30,7 @@ extern "C" void nonstandard_arithmetic();
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <values.h>
+#include <limits.h>
 #include <math.h>
 #include <signal.h>
 #include <sys/types.h>

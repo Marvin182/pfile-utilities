@@ -29,7 +29,7 @@ INSTALL_ROOT =
 BIN_INSTALL_DIR =	$(INSTALL_ROOT)$(exec_prefix)/bin
 
 # Where to install man pages for executables
-MAN_INSTALL_DIR =	$(INSTALL_ROOT)$(prefix)/man
+MAN_INSTALL_DIR =	@mandir@
 MAN1_INSTALL_DIR =	$(MAN_INSTALL_DIR)/man1
 docdir=			$(MAN1_INSTALL_DIR)
 transform = 		@program_transform_name@

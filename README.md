@@ -18,7 +18,11 @@ Install
 -------
 
 ### OS X
-There is a [pull request for a homebrew formula](https://github.com/Homebrew/homebrew/pull/47975/files#r49671366), called pfile-utils. If your are lucky `brew install pfile-utils` will just work for you ;)
+There is a homebrew formula in [my personal tap](https://github.com/Marvin182/homebrew-zapfhahn). You can use it by:
+```
+brew tap Marvin182/zapfhahn
+brew install pfile-utils
+```
 
 ### Linux
 See Build from Source section

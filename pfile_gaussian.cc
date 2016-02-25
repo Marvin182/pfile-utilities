@@ -329,8 +329,8 @@ pfile_gaussian(QN_InFtrLabStream& in_stream,
     for (i=0;i<frrng.length();i++) {
       ftr_sum[i] = ftr_sumsq[i] = 0.0;
       ftr_means[i] = ftr_stds[i] = 0.0;
-      ftr_maxs[i] = -MAXFLOAT;
-      ftr_mins[i] = MAXFLOAT;
+      ftr_maxs[i] = std::numeric_limits<float>::min();
+      ftr_mins[i] = std::numeric_limits<float>::max();
     }
 
     ftr_ranges = new float[frrng.length()];

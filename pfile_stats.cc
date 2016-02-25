@@ -98,8 +98,8 @@ pfile_stats(QN_InFtrLabStream& in_stream,FILE *out_fp,
     for (i=0;i<frrng.length();i++) {
       ftr_sum[i] = ftr_sumsq[i] = 0.0;
       ftr_means[i] = ftr_stds[i] = 0.0;
-      ftr_maxs[i] = -MAXFLOAT;
-      ftr_mins[i] = MAXFLOAT;
+      ftr_maxs[i] = std::numeric_limits<float>::min();
+      ftr_mins[i] = std::numeric_limits<float>::max();
     }
 
     for (Range::iterator srit=srrng.begin();!srit.at_end();srit++) {
@@ -306,8 +306,8 @@ pfile_stats(QN_InFtrLabStream& in_stream,FILE *out_fp,
     ftr_maxs_locs_p = ftr_maxs_locs;
     ftr_mins_locs_p = ftr_mins_locs;
 
-    double max_maxs_stds=-MAXFLOAT;
-    double min_mins_stds=+MAXFLOAT;
+    double max_maxs_stds=std::numeric_limits<float>::min();
+    double min_mins_stds=std::numeric_limits<float>::max();
     size_t *hist_p = histogram;
     for (i=0;i<frrng.length();i++) {
       const double maxs_stds = (*ftr_maxs_p)/(*ftr_stds_p);

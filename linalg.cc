@@ -282,7 +282,7 @@ linalg::getEigenVec(const icsiarray<double>& a, double& eigVal,
         
     int nrInitialIter = 0;        
     double len_y = 0.0;
-    double maxGF = std::numeric_limits<double>::min();	// min value for a double (from limits.h)
+    double maxGF = std::numeric_limits<double>::min();
     double lambdaI = eigVal;
     do {
 	nrInitialIter++;
@@ -707,9 +707,8 @@ linalg::normalize(icsiarray<double>& a) {
  */
 void
 linalg::random_unit_vector(icsiarray<double>& a){
-    // SHRT_MAX is defined in limits.h
-    const double max = static_cast<double>(SHRT_MAX);
-    const double half_max = static_cast<double>(SHRT_MAX/2);
+    const double max = static_cast<double>(std::numeric_limits<short>::max());
+    const double half_max = static_cast<double>(std::numeric_limits<short>::max()/2);
     static int seeded = 0;	// has rand num generator been seeded?
     if(!seeded){
 	//      srand48(time(0));
